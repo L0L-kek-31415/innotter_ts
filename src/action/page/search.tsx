@@ -19,11 +19,8 @@ export const search =
         if (uuid){params["uuid"] = uuid}
         if (name){params["name"] = name}
         if (tags){params["tags"] = tags}
-        console.log(params["uuid"])
         const response = await axiosInstance.get(
             '/api/v1/search/page/', {params})
-        console.log(response.data)
-        console.log(typeof(response.data))
         dispatch({
             type: PAGE_SUCCESS,
             payload: {

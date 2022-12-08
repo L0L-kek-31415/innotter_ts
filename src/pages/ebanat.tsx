@@ -39,7 +39,6 @@ export function Eblan () {
     pages = useSelector<RootState, PageState>(state => state.pages).pages
 
     const HandleSubmit = async (e: any) => {
-        console.log(name)
         var el = document.getElementsByTagName('select')[0];
         var tags = getSelectValues(el) || ''
         dispatch(search(uuid, tags, name, navigate))

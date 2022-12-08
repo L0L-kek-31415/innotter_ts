@@ -10,17 +10,13 @@ export const load =
     async (
         dispatch: ThunkDispatch<RootState, unknown, AnyAction>
         ): Promise<void> => {
-        console.log("send one")
         const response = await axiosInstance.get('/api/v1/page/', {timeout: 2000})
-        console.log(response.data)
-        console.log(typeof(response.data))
         dispatch({
             type: PAGE_SUCCESS,
             payload: {
                 pages: response.data
             },
         })
-        console.log("get Onw")
         navigate('/')
 
 }
