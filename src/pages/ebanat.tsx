@@ -54,10 +54,9 @@ export function Eblan () {
       
           if (opt.selected) {
             return `${opt.value}`.toString()
-
           }
-          return ''
         }
+        return ''
         }
     return (
         <div>
