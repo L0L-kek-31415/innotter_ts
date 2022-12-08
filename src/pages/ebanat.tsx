@@ -1,9 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../store/reducers/rootReducer"
-import { UserState } from "../store/reducers/userReducer"
-import Link from '@mui/material/Link';
-import { NavLink, useNavigate } from "react-router-dom";
-import { Button, Grid } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { Grid } from "@mui/material";
 import { load } from "../action/page/load";
 import { PageState } from "../store/reducers/pageReducer";
 import Paper from '@mui/material/Paper';
@@ -20,12 +18,15 @@ interface ITag{
 
 
 export function Eblan () {
-    // const [tags, setTags] = useState('')
     const [articles, setArticles] = useState([])
     const [uuid, setUuid] = useState('')
     const [name, setName] = useState('')
     var pages = null
     const navigate = useNavigate()
+
+    useEffect(() => {
+        dispatch(load(navigate))
+    },[])
 
     useEffect(() => {
         axiosInstance
@@ -62,7 +63,6 @@ export function Eblan () {
     return (
         <div>
             <div style={{padding: "100px"}}>
-            {/* <input type="text" id='tags' onChange={(e) => setTags(e.target.value)} /> */}
             <Grid item xs={12}>
                     <select name="tags" id="tags">
                       {articles.map((article: ITag) => {

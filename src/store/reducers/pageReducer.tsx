@@ -1,4 +1,4 @@
-import { PAGE_LOAD_ERROR, PAGE_REQUEST, PAGE_SUCCESS } from "../../types/page";
+import { PAGE_LOAD_ERROR, PAGE_SUCCESS } from "../../types/page";
 
 
 export interface IPage {

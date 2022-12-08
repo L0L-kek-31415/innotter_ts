@@ -59,12 +59,10 @@ axiosInstance.interceptors.response.use(
                 }
                 else{
                     console.log('Refresh token is expired', tokenParts.exp, now);
-                    // window.location.href("/login/");  
                 } 
             }
             else{
                 console.log("Refresh token not abaialble");
-                // window.location.href("/login/");
             }
         }
         return Promise.reject(error);

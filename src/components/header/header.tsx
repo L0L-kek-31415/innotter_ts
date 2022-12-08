@@ -1,4 +1,3 @@
-import React from "react";
 import { AppBar, Container, Toolbar } from "@mui/material";
 import Nav from "./nav";
 
