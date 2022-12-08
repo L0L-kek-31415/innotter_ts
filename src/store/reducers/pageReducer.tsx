@@ -5,8 +5,8 @@ export interface IPage {
     name: string;
     tags: any[];
     description: string;
-    followers: any[];
-    follow_requests: any[];
+    followers: string[];
+    follow_requests: string[];
     owner: string;
     id: number;
 }

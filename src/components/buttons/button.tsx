@@ -1,10 +1,22 @@
-import { Button } from "@mui/material"
+import React from "react";
+import Button from '@mui/material/Button';
 
-
-export const MyButton = (
-    label: string, 
-    onClick: any,
-) => {
-    return (<Button onClick={onClick} variant="contained">{label}</Button>)
+interface Props {
+  children?: string;
+  onClick: any;
+  uuid: number
 }
 
+const MyButton: React.FC<Props> = ({ 
+    children,
+    onClick, 
+    uuid
+  }) => { 
+  return (
+    <button onClick={function() {onClick(uuid)}}>
+    {children}
+    </button>
+  );
+}
+
+export default MyButton;

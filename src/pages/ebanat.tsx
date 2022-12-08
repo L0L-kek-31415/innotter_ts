@@ -9,7 +9,12 @@ import Box from '@mui/material/Box';
 import { useEffect, useState } from "react";
 import { search } from "../action/page/search";
 import { IPage } from "../store/reducers/pageReducer";
+import MyButton from "../components/buttons/button"; 
 import axiosInstance from "../axios";
+import { start_follow } from "../action/page/follow";
+import { stop_follow } from "../action/page/unfollow";
+import { UserState } from "../store/reducers/userReducer";
+import { PageButtons } from "./pageButtons";
 
 interface ITag{
     id: number,
@@ -37,6 +42,7 @@ export function Eblan () {
 
     const dispatch = useDispatch<any>();
     pages = useSelector<RootState, PageState>(state => state.pages).pages
+
 
     const HandleSubmit = async (e: any) => {
         var el = document.getElementsByTagName('select')[0];
@@ -88,7 +94,7 @@ export function Eblan () {
         },
         }}
     >
-            {pages?.map((page: any) => {
+            {pages?.map((page: IPage) => {
                 return (
                         <Paper className='paper'>
                             <h2 className="title">{page.name}</h2>
@@ -98,7 +104,10 @@ export function Eblan () {
                                     <p>followers: {(page.followers).length}</p>
                                     <p>follow requests: {page.follow_requests.length}</p>
                                     <p>owner: {page.owner}</p>
-                                    {/* <Follow uuid={page.id}/> */}
+                                    <div>
+                                        <PageButtons list_followers={page.follow_requests.concat(page.followers)} owner={page.owner} page_id={page.id} />
+                                        {/* {PageButtons(page.follow_requests + page.followers, page.id)} */}
+                                    </div>
                                     
                                 </div>
                         </Paper>
