@@ -12,6 +12,8 @@ export interface UserState {
     error?: string, 
     userInfo?: {
         username?: string | null;
+        access?: string;
+        refresh?: string;
     }
 }
 
@@ -20,6 +22,8 @@ interface Action {
     payload: {
         loading?: boolean;
         username?: string | null;
+        access?: string;
+        refresh?: string;
         error?: string | null;
     }
 }
@@ -38,6 +42,8 @@ export const userReducer = (state = initialState, action: Action): UserState => 
                 loading: true,
                 userInfo: {
                     username: action.payload.username,
+                    access: action.payload.access,
+                    refresh: action.payload.refresh,
                 }
             }
         case USER_LOGIN_ERROR:

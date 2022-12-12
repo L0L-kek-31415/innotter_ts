@@ -2,6 +2,8 @@ import axios from "axios";
 
 const baseURL = 'http://0.0.0.0:8000';
 
+
+
 const axiosInstance = axios.create({
     baseURL: baseURL,
     timeout: 5000,
@@ -55,7 +57,7 @@ axiosInstance.interceptors.response.use(
                         })
                         .catch((err) => {
                             console.log(err)
-                        })                  
+                        })
                 }
                 else{
                     console.log('Refresh token is expired', tokenParts.exp, now);
@@ -68,5 +70,21 @@ axiosInstance.interceptors.response.use(
         return Promise.reject(error);
     }
 )
+
+export function refresh(){
+    const RefreshToken = localStorage.getItem("refresh_token")
+    if (RefreshToken) {
+        axiosInstance
+        .post('/token/refresh/', {refresh: RefreshToken})
+        .then((response) =>{
+            localStorage.setItem("access_token", response.data.access)
+            localStorage.setItem("refresh_token", response.data.refresh)
+
+            axiosInstance.defaults.headers['Authorization'] = 
+                'Bearer ' + response.data.access;
+        }
+        )
+    }
+}
 
 export default axiosInstance;

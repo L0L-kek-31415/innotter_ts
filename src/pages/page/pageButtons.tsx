@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
-import { start_follow } from "../action/page/follow";
-import { stop_follow } from "../action/page/unfollow";
-import MyButton from "../components/buttons/button";
-import { RootState } from "../store/reducers/rootReducer";
-import { UserState } from "../store/reducers/userReducer";
+import { start_follow } from "../../action/page/follow";
+import { stop_follow } from "../../action/page/unfollow";
+import MyButton from "../../components/buttons/button";
+import { RootState } from "../../store/reducers/rootReducer";
+import { UserState } from "../../store/reducers/userReducer";
 
 interface Props{
     list_followers: string[],

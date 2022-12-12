@@ -34,6 +34,8 @@ export const login =
                         payload: {
                             loading: true,
                             username: username,
+                            access: res.data.access,
+                            refresh: res.data.refresh,
                         },
                     })
                 })

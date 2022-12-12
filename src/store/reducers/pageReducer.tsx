@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import { PAGE_LOAD_ERROR, PAGE_SUCCESS } from "../../types/page";
 
 
@@ -9,6 +10,7 @@ export interface IPage {
     follow_requests: string[];
     owner: string;
     id: number;
+    button:  React.FC;
 }
 
 export interface PageState {
@@ -19,14 +21,13 @@ export interface PageState {
 interface Action {
     type: string,
     payload: {
-        pages?: [];
+        pages?: IPage[];
         error?: string | null;
     }
 }
 
 const initialState: PageState = {
-    pages: []
-
+    pages: [],
 }
 
 
@@ -34,7 +35,7 @@ export const pageReducer = (state = initialState, action: Action): PageState => 
     switch (action.type) {
         case PAGE_SUCCESS:
             return { 
-                pages: action.payload.pages
+                pages: action.payload.pages,
             }
         case PAGE_LOAD_ERROR:
             return { error: action.payload.error! }
