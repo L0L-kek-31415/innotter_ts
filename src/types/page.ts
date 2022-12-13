@@ -1,3 +1,3 @@
-export const PAGE_REQUEST = 'PAGE_REQUEST'
-export const PAGE_LOAD_ERROR = 'PAGE_LOAD_ERROR'
-export const PAGE_SUCCESS = 'PAGE_SUCCESS'
+export const PAGE_REQUEST = "PAGE_REQUEST";
+export const PAGE_LOAD_ERROR = "PAGE_LOAD_ERROR";
+export const PAGE_SUCCESS = "PAGE_SUCCESS";

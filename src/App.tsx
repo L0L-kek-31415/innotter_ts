@@ -1,11 +1,11 @@
-import LogIn from './pages/login';
-import SingUp from './pages/register';
-import { BrowserRouter , Route, Routes } from 'react-router-dom';
-import LogOut from './pages/logout';
-import Header from './components/header/header';
-import { Eblan } from './pages/page/ebanat';
-import { CreatePage } from './pages/page/create';
-
+import LogIn from "./pages/login";
+import SingUp from "./pages/register";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import LogOut from "./pages/logout";
+import Header from "./components/header/header";
+import { Eblan } from "./pages/page/ebanat";
+import { CreatePage } from "./pages/page/create";
+import { MyPages } from "./pages/page/mypages";
 
 function App() {
   return (
@@ -17,8 +17,9 @@ function App() {
         <Route path="/" element={<Eblan />} />
         <Route path="/create" element={<CreatePage />} />
         <Route path="/logout" element={<LogOut />} />
+        <Route path="/mypages" element={<MyPages />} />
       </Routes>
-  </BrowserRouter>
+    </BrowserRouter>
   );
 }
 

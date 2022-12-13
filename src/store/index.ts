@@ -1,13 +1,14 @@
-import { applyMiddleware, legacy_createStore as createStore } from "@reduxjs/toolkit";
+import {
+  applyMiddleware,
+  legacy_createStore as createStore,
+} from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
 import { rootReducer } from "./reducers/rootReducer";
 
-
-const initialState = {}
-
+const initialState = {};
 
 export const store = createStore(
-    rootReducer,
-    initialState,
-    applyMiddleware(thunk),
-    )
+  rootReducer,
+  initialState,
+  applyMiddleware(thunk)
+);
