@@ -11,6 +11,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../action/user/login";
 import { useNavigate } from "react-router-dom";
+import userService from "../services/userService";
 
 export default function LogIn() {
   const [username, setUsername] = useState("");
@@ -23,6 +24,7 @@ export default function LogIn() {
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
     dispatch(login(username, password, navigate));
+    navigate("/");
   };
 
   return (

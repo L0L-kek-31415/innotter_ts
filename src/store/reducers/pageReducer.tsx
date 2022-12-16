@@ -1,5 +1,3 @@
-import { PAGE_LOAD_ERROR, PAGE_SUCCESS } from "../../types/page";
-
 export interface IPage {
   name: string;
   tags: any[];
@@ -33,11 +31,11 @@ export const pageReducer = (
   action: Action
 ): PageState => {
   switch (action.type) {
-    case PAGE_SUCCESS:
+    case "kek":
       return {
         pages: action.payload.pages,
       };
-    case PAGE_LOAD_ERROR:
+    case "ll":
       return { error: action.payload.error! };
     default:
       return state;

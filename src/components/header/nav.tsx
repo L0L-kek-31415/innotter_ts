@@ -3,63 +3,34 @@ import Link from "@mui/material/Link";
 import { NavLink } from "react-router-dom";
 import { Button, Box } from "@mui/material";
 import { useSelector } from "react-redux";
-import { RootState } from "../../store/reducers/rootReducer";
-import { UserState } from "../../store/reducers/userReducer";
+
+const MyLink = (to: string, title: string) => {
+  return (
+    <Link
+      component={NavLink}
+      to={to}
+      underline="hover"
+      color="inherit"
+      variant="h4"
+    >
+      {title}
+    </Link>
+  );
+};
 
 const Nav = () => {
-  const name = useSelector<RootState, UserState>((state) => state.user).userInfo
-    ?.username;
-  if (name)
+  // @ts-ignore
+  const ownerId = useSelector((state) => state.user.id);
+  console.log(ownerId);
+  if (ownerId)
     return (
       <Breadcrumbs separator="" aria-label="breadcrumb">
-        <Link
-          component={NavLink}
-          to="/"
-          underline="hover"
-          color="inherit"
-          variant="h4"
-        >
-          Main
-        </Link>
-        <Link
-          component={NavLink}
-          to="/recom"
-          underline="hover"
-          color="inherit"
-          variant="h4"
-        >
-          For you
-        </Link>
-        <Link
-          component={NavLink}
-          to="/mypages"
-          underline="hover"
-          color="inherit"
-          variant="h4"
-        >
-          My Pages
-        </Link>
-        <Link
-          component={NavLink}
-          to="/create"
-          underline="hover"
-          color="inherit"
-          variant="h4"
-        >
-          Create Page
-        </Link>
+        {MyLink("/", "Main")}
+        {MyLink("/recom", "For you")}
+        {MyLink("/mypages", "My Pages")}
+        {MyLink("/create", "Create Page")}
         <Box sx={{ ml: 40 }}>
-          <Button variant="contained">
-            <Link
-              component={NavLink}
-              to="/logout"
-              underline="hover"
-              color="inherit"
-              variant="h6"
-            >
-              LogOut
-            </Link>
-          </Button>
+          <Button variant="contained">{MyLink("/logout", "LogOut")}</Button>
         </Box>
       </Breadcrumbs>
     );

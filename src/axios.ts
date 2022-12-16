@@ -37,49 +37,25 @@ axiosInstance.interceptors.response.use(
     ) {
       const RefreshToken = localStorage.getItem("refresh_token");
       if (RefreshToken) {
-        const tokenParts = JSON.parse(RefreshToken.split(".")[1]);
-        const now = Math.ceil(Date.now() / 1000);
-        console.log(tokenParts.exp);
-        if (tokenParts.exp > now) {
-          return axiosInstance
-            .post("/token/refresh/", { refresh: RefreshToken })
-            .then((response) => {
-              localStorage.setItem("access_token", response.data.access);
-              localStorage.setItem("refresh_token", response.data.refresh);
+        return axiosInstance
+          .post("/token/refresh/", { refresh: RefreshToken })
+          .then((response) => {
+            localStorage.setItem("access_token", response.data.access);
+            localStorage.setItem("refresh_token", response.data.refresh);
 
-              axiosInstance.defaults.headers["Authorization"] =
-                "Bearer " + response.data.access;
-              originalRequest.headers["Authorization"] =
-                "Bearer " + response.data.access;
-              return axiosInstance(originalRequest);
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        } else {
-          console.log("Refresh token is expired", tokenParts.exp, now);
-        }
-      } else {
-        console.log("Refresh token not abaialble");
+            axiosInstance.defaults.headers["Authorization"] =
+              "Bearer " + response.data.access;
+            originalRequest.headers["Authorization"] =
+              "Bearer " + response.data.access;
+            return axiosInstance(originalRequest);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       }
+      return Promise.reject(error);
     }
-    return Promise.reject(error);
   }
 );
-
-export function refresh() {
-  const RefreshToken = localStorage.getItem("refresh_token");
-  if (RefreshToken) {
-    axiosInstance
-      .post("/token/refresh/", { refresh: RefreshToken })
-      .then((response) => {
-        localStorage.setItem("access_token", response.data.access);
-        localStorage.setItem("refresh_token", response.data.refresh);
-
-        axiosInstance.defaults.headers["Authorization"] =
-          "Bearer " + response.data.access;
-      });
-  }
-}
 
 export default axiosInstance;
