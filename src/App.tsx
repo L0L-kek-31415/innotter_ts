@@ -12,6 +12,8 @@ import PageList from "./components/page/pageList";
 import AddPage from "./components/page/addPage";
 import MyPageList from "./components/page/myPagesList";
 import Search from "./components/page/search";
+import PostList from "./components/post/postList";
+import AddPost from "./components/post/addPost";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,10 +39,13 @@ function App() {
         <Route path="/register" element={<SingUp />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/" element={<PageList />} />
-        <Route path="/create" element={<AddPage />} />
+        <Route path="/createpage" element={<AddPage />} />
         <Route path="/logout" element={<LogOut />} />
         <Route path="/mypages" element={<MyPageList />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/posts" element={<PostList />} />
+        <Route path="/createpost" element={<AddPost />} />
+
       </Routes>
     </BrowserRouter>
   );

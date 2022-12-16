@@ -17,8 +17,11 @@ class PostService {
     unlike = (id: number) => {
         return axiosInstance.post(`/api/v1/post/${id}/unlike/`)
     }
-    createPost = (params: any) => {
-        return axiosInstance.post("/api/v1/post", params)
+    createItem = (a: any, b: any) => {
+        return axiosInstance.post("/api/v1/post/", {
+            page: b,
+            content: a,
+        })
     }
 }
 
