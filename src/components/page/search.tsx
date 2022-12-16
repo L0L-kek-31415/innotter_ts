@@ -19,6 +19,7 @@ import { useDispatch } from "react-redux";
 import { search } from "../../action/page/search";
 import SearchIcon from "@mui/icons-material/Search";
 import ItemItem from "./item";
+import tagService from "../../services/tagService";
 
 const validationSchema = yup.object().shape({
   name: yup.string(),
@@ -35,7 +36,7 @@ const Search = ({}) => {
 
   useEffect(() => {
     const fetchCategories = async () => {
-      const response = await pageService.getTags();
+      const response = await tagService.getTags();
       setTag(response.data);
     };
     fetchCategories();

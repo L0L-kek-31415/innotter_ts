@@ -14,6 +14,8 @@ import { TextField } from "formik-mui";
 import pageService from "../../services/pageService";
 import { useNavigate } from "react-router";
 import * as yup from "yup";
+import tagService from "../../services/tagService";
+import MyButton from "../buttons/button";
 
 const validationSchema = yup.object().shape({
   name: yup.string().required(),
@@ -30,7 +32,7 @@ const AddPage = ({}) => {
 
   useEffect(() => {
     const fetchCategories = async () => {
-      const response = await pageService.getTags();
+      const response = await tagService.getTags();
       setTag(response.data);
     };
     fetchCategories();
@@ -123,6 +125,7 @@ const AddPage = ({}) => {
                 </Select>
               </Grid>
             </Grid>
+            <MyButton onClick={() => navigate("createtag")} children="Add tag"/>
             <Grid container item xs={12} direction="row-reverse">
               <Grid item>
                 <Button

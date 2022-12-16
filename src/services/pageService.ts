@@ -5,9 +5,6 @@ class PageService {
   getPages = () => {
     return axiosInstance.get("/api/v1/page/");
   };
-  getTags = () => {
-    return axiosInstance.get("/api/v1/tag/");
-  };
   createItem = (name: string, description: string, uuid: number, tags: any) => {
     return axiosInstance.post("/api/v1/page/", {
       name,

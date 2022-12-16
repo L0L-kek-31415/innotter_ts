@@ -12,12 +12,7 @@ const PageList = () => {
     const fetchPages = async () => {
       try {
         let response;
-        // if (lol == 'lol'){
         response = await pageService.getPages();
-        // }
-        // else{
-        //     response = lol
-        // }
         setPages(response.data);
       } catch (err) {
         console.log("Oh fuck, we've got another error");
