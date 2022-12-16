@@ -11,6 +11,7 @@ import { register } from "../action/user/register";
 import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import userService from "../services/userService";
 
 const validationSchema = yup.object().shape({
   username: yup.string().required(),
@@ -32,7 +33,8 @@ export default function SingUp() {
     validationSchema: validationSchema,
     onSubmit: (values: any) => {
       const x = JSON.stringify(values, null, 3);
-      dispatch(register(x, navigate));
+      userService.register(x);
+      navigate("/login");
     },
   });
   return (

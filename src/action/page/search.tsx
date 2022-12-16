@@ -3,9 +3,9 @@ import { AnyAction } from "redux";
 import { RootState } from "../../store/reducers/rootReducer";
 import axiosInstance from "../../axios";
 import { NavigateFunction } from "react-router-dom";
-import { PAGE_SUCCESS } from "../../types/page";
+import pageService from "../../services/pageService";
 
-export const search =
+export const search: any =
   (
     uuid: string,
     tags: string,
@@ -25,14 +25,7 @@ export const search =
     if (tags) {
       params["tags"] = tags;
     }
-    const response = await axiosInstance.get("/api/v1/search/page/", {
-      params,
-    });
-    dispatch({
-      type: PAGE_SUCCESS,
-      payload: {
-        pages: response.data,
-      },
-    });
+    // const response = await axiosInstance.get("/api/v1/search/page/", {
+    pageService.search(params);
     navigate("/");
   };

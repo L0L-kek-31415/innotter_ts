@@ -4,19 +4,10 @@ import Button from "@mui/material/Button";
 interface Props {
   children?: string;
   onClick: any;
-  uuid: number;
 }
 
-const MyButton: React.FC<Props> = ({ children, onClick, uuid }) => {
-  return (
-    <button
-      onClick={function () {
-        onClick(uuid);
-      }}
-    >
-      {children}
-    </button>
-  );
+const MyButton: React.FC<Props> = ({ children, onClick }) => {
+  return <Button onClick={onClick}>{children}</Button>;
 };
 
 export default MyButton;
