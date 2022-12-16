@@ -34,7 +34,7 @@ const ItemItem = ({
   return (
     <Grid item>
       <Card>
-        <CardActionArea onClick={() => navigate(`page/${id}`)}>
+        <CardActionArea onDoubleClick={() => navigate(`page/${id}`)}>
           <CardMedia
             component="img"
             image={`images/jojo${getRandomInt(8)}.jpeg`}
