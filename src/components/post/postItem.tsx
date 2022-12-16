@@ -7,6 +7,7 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
+import { PostButton } from "./postButton";
 
 type PostProps = {
   page: number;
@@ -44,14 +45,17 @@ const PostItem = ({
               {content.slice(0, 20)}...
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              <b>Likes:</b> {like}
+              <b>Likes:</b> {like.length}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              <b>Updated:</b> {created_at}
+              <b>Updated:</b> {created_at.replace('T', '.').split('.').slice(0,2).join(' ')}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              <b>Created:</b> {updated_at}
+              <b>Created:</b> {updated_at.replace('T', '.').split('.').slice(0,2).join(' ')}
             </Typography>
+            <PostButton 
+              list_liked={like}
+              post_id={id}/>
           </CardContent>
         </CardActionArea>
       </Card>

@@ -25,11 +25,12 @@ const Nav = () => {
   if (ownerId)
     return (
       <Breadcrumbs separator="" aria-label="breadcrumb">
-        {MyLink("/", "Main")}
+        {MyLink("/", "Pages")}
+        {MyLink("/posts", "Posts")}
         {MyLink("/recom", "For you")}
         {MyLink("/mypages", "My Pages")}
         {MyLink("/create", "Create Page")}
-        <Box sx={{ ml: 40 }}>
+        <Box sx={{ ml: 20 }}>
           <Button variant="contained">{MyLink("/logout", "LogOut")}</Button>
         </Box>
       </Breadcrumbs>
@@ -37,15 +38,8 @@ const Nav = () => {
   else {
     return (
       <Breadcrumbs separator="" aria-label="breadcrumb">
-        <Link
-          component={NavLink}
-          to="/"
-          underline="hover"
-          color="inherit"
-          variant="h4"
-        >
-          Main
-        </Link>
+        {MyLink("/", "Pages")}
+        {MyLink("/posts", "Posts")}
         <Box sx={{ ml: 40 }}>
           <Button variant="contained">
             <Link
