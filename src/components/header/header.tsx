@@ -5,9 +5,7 @@ const Header = () => {
   return (
     <AppBar position="fixed">
       <Container>
-        <Toolbar>
-          <Nav />
-        </Toolbar>
+        <Nav />
       </Container>
     </AppBar>
   );

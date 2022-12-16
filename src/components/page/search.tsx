@@ -17,10 +17,12 @@ import * as yup from "yup";
 import PageList from "./pageList";
 import { useDispatch } from "react-redux";
 import { search } from "../../action/page/search";
+import SearchIcon from "@mui/icons-material/Search";
+import ItemItem from "./item";
 
 const validationSchema = yup.object().shape({
-  name: yup.string().required(),
-  uuid: yup.number().required(),
+  name: yup.string(),
+  uuid: yup.number(),
 });
 
 const Search = ({}) => {
@@ -29,6 +31,7 @@ const Search = ({}) => {
   const [error, setError] = useState("");
   const [categories, setCategories] = useState<any>([]);
   const [tags, setTag] = useState<any>([]);
+  const [pages, setPages] = useState<any[]>([]);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -41,15 +44,55 @@ const Search = ({}) => {
   const onSubmit = async (values: FormikValues) => {
     setError("");
     try {
-      dispatch(search(values.name, values.uuid, categories)).then(
-        (res: any) => {
-          // return PageList(res)
-        }
-      );
+      let params: { [key: string]: string } = {};
+      if (values.uuid) {
+        params["uuid"] = values.uuid;
+      }
+      if (values.name) {
+        params["name"] = values.name;
+      }
+      if (categories) {
+        params["tags"] = categories;
+      }
+      pageService.search(params).then((res) => {
+        setPages(res.data);
+      });
     } catch (err) {
       console.log("Ooops i did it again");
     }
   };
+
+  const render =
+    pages.length === 0 ? (
+      <div>
+        <SearchIcon sx={{ fontSize: 128 }} />
+        <p>Ooops... Looks like there is no pages</p>
+      </div>
+    ) : (
+      <Grid container spacing={6} marginTop={4} minWidth={10}>
+        {pages.map(
+          ({
+            id,
+            name,
+            description,
+            owner,
+            tags,
+            followers,
+            follow_requests,
+          }) => (
+            <ItemItem
+              id={id}
+              name={name}
+              description={description}
+              tags={tags}
+              owner={owner}
+              followers={followers}
+              follow_requests={follow_requests}
+            />
+          )
+        )}
+      </Grid>
+    );
 
   return (
     <Container
@@ -100,7 +143,6 @@ const Search = ({}) => {
                   color="primary"
                   label="Category"
                   value={categories}
-                  multiple
                   onChange={(e: any) => setCategories(e.target.value)}
                 >
                   {/* @ts-ignore */}
@@ -126,6 +168,7 @@ const Search = ({}) => {
           </Form>
         )}
       </Formik>
+      {render}
       <Typography color="red">{error}</Typography>
     </Container>
   );

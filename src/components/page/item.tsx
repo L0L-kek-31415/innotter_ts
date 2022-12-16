@@ -9,12 +9,11 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router";
 import { PageButtons } from "./pageButtons";
-import { getRandomInt } from "../../helper/randomInt";
 
 type ItemItemProps = {
   name: string;
   tags: any[];
-  description: string;
+  description: string; 
   followers: string[];
   follow_requests: string[];
   owner: string;
@@ -37,7 +36,7 @@ const ItemItem = ({
         <CardActionArea onDoubleClick={() => navigate(`page/${id}`)}>
           <CardMedia
             component="img"
-            image={`images/jojo${getRandomInt(8)}.jpeg`}
+            image={`images/jojo${(id || 8) % 8}.jpeg`}
             style={{ width: "300px" }}
           />
           <CardContent>

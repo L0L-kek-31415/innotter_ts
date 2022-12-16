@@ -29,25 +29,16 @@ const ForYouPostList = () => {
       </div>
     ) : (
       <Grid container spacing={6} marginTop={4} minWidth={10}>
-        {posts.map(
-          ({
-            id,
-            page, 
-            content, 
-            created_at, 
-            updated_at,
-            like,
-          }) => (
-            <PostItem
-              id={id}
-              page={page}
-              content={content}
-              created_at={created_at}
-              updated_at={updated_at}
-              like={like}
-            />
-          )
-        )}
+        {posts.map(({ id, page, content, created_at, updated_at, like }) => (
+          <PostItem
+            id={id}
+            page={page}
+            content={content}
+            created_at={created_at}
+            updated_at={updated_at}
+            like={like}
+          />
+        ))}
       </Grid>
     );
 

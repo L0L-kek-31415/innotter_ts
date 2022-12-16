@@ -31,6 +31,7 @@ const Nav = () => {
         {MyLink("/mypages", "My Pages")}
         {MyLink("/createpage", "Create Page")}
         {MyLink("/createpost", "Create Post")}
+        {MyLink("/search", "Search")}
         <Box>
           <Button variant="contained">{MyLink("/logout", "LogOut")}</Button>
         </Box>

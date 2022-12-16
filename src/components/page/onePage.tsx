@@ -9,29 +9,30 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router";
-import { PageButtons } from "./pageButtons";
 import { useParams } from "react-router-dom";
 import pageService from "../../services/pageService";
 import { IPage } from "../../store/reducers/pageReducer";
-import { getRandomInt } from "../../helper/randomInt";
 import postService from "../../services/postService";
 import PostItem from "../post/postItem";
-
 
 const OnePage = () => {
   let { id } = useParams();
   const [page, setPage] = useState<IPage>();
   const [posts, setPosts] = useState<any[]>([]);
+  const [lolkek, setStat] = useState<any>();
 
   useEffect(() => {
     const fetchPage = async () => {
       try {
         const response = await pageService.getPageId(id);
+        const res = await postService.postsByPage(id);
+        // const stat = await axios.post(`http://0.0.0.0:8002/statistics/${id}`)
+
         setPage(response.data);
-        const res = await postService.postsByPage(id)
-        setPosts(res.data)
+        setPosts(res.data);
+        // setStat(stat)
       } catch (err) {
-        console.log("Oh fuck, we've got another error");
+        console.log("Oh fuck, we've got another error", err);
       }
     };
     fetchPage();
@@ -45,38 +46,29 @@ const OnePage = () => {
       </div>
     ) : (
       <Grid container spacing={6} marginTop={4} minWidth={10}>
-        {posts.map(
-          ({
-            id,
-            page, 
-            content, 
-            created_at, 
-            updated_at,
-            like,
-          }) => (
-            <PostItem
-              id={id}
-              page={page}
-              content={content}
-              created_at={created_at}
-              updated_at={updated_at}
-              like={like}
-            />
-          )
-        )}
+        {posts.map(({ id, page, content, created_at, updated_at, like }) => (
+          <PostItem
+            id={id}
+            page={page}
+            content={content}
+            created_at={created_at}
+            updated_at={updated_at}
+            like={like}
+          />
+        ))}
       </Grid>
     );
-  
+
   const navigate = useNavigate();
   return (
     <Grid item>
-      <Card style={{marginTop: "100px"}}>
+      <Card style={{ marginTop: "100px" }}>
         <h1>Page</h1>
         <CardActionArea>
-         <CardMedia
+          <CardMedia
             component="img"
-            image={`images/jojo${getRandomInt(8)}.jpeg`}
-            style={{ width: "300px"}}
+            image={`images/jojo${(page?.id || 8) % 8}.jpeg`}
+            style={{ width: "300px" }}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
@@ -98,8 +90,9 @@ const OnePage = () => {
               <b>Owner:</b> {page?.owner}
             </Typography>
           </CardContent>
-          </CardActionArea>
+        </CardActionArea>
       </Card>
+      {/* <h1>{lolkek}</h1> */}
       <h2>Posts</h2>
       <div>{render}</div>
     </Grid>

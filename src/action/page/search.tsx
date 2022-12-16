@@ -8,7 +8,7 @@ import pageService from "../../services/pageService";
 export const search: any =
   (
     uuid: string,
-    tags: string,
+    tags: any,
     name: string,
     navigate: NavigateFunction
   ): ThunkAction<Promise<void>, RootState, unknown, AnyAction> =>
@@ -21,9 +21,6 @@ export const search: any =
     }
     if (name) {
       params["name"] = name;
-    }
-    if (tags) {
-      params["tags"] = tags;
     }
     // const response = await axiosInstance.get("/api/v1/search/page/", {
     pageService.search(params);

@@ -38,10 +38,7 @@ const AddPost = ({}) => {
   const onSubmit = async (values: FormikValues) => {
     setError("");
     try {
-      await postService.createItem(
-        values.content,
-        categories
-      );
+      await postService.createItem(values.content, categories);
       navigate("/");
     } catch (err) {
       console.log("Ooops i did it again");

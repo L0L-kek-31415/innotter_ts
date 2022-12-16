@@ -41,11 +41,14 @@ class PageService {
     });
   };
   search = (params: any) => {
-    return axiosInstance.get("/api/v1/search/page/", params);
+    return axiosInstance.get("/api/v1/search/page/", { params });
   };
   getPageId = (id: any) => {
-    return axiosInstance.get(`/api/v1/page/${id}/`)
-  }
+    return axiosInstance.get(`/api/v1/page/${id}/`);
+  };
+  delete = (id: any) => {
+    return axiosInstance.delete(`/api/v1/page/${id}/`);
+  };
 }
 
 export default new PageService();

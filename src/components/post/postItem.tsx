@@ -17,9 +17,7 @@ type PostProps = {
   like: any;
   id: number;
 };
-function getRandomInt(max: number) {
-  return Math.floor(Math.random() * max);
-}
+
 const PostItem = ({
   id,
   page,
@@ -34,7 +32,7 @@ const PostItem = ({
         <CardActionArea>
           <CardMedia
             component="img"
-            image={`images/jojo${getRandomInt(8)}.jpeg`}
+            image={`images/jojo${(id || 8) % 8}.jpeg`}
             style={{ width: "300px" }}
           />
           <CardContent>
@@ -48,14 +46,14 @@ const PostItem = ({
               <b>Likes:</b> {like.length}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              <b>Updated:</b> {created_at.replace('T', '.').split('.').slice(0,2).join(' ')}
+              <b>Updated:</b>{" "}
+              {created_at.replace("T", ".").split(".").slice(0, 2).join(" ")}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              <b>Created:</b> {updated_at.replace('T', '.').split('.').slice(0,2).join(' ')}
+              <b>Created:</b>{" "}
+              {updated_at.replace("T", ".").split(".").slice(0, 2).join(" ")}
             </Typography>
-            <PostButton 
-              list_liked={like}
-              post_id={id}/>
+            <PostButton list_liked={like} post_id={id} />
           </CardContent>
         </CardActionArea>
       </Card>

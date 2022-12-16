@@ -9,7 +9,6 @@ import {
 import { useNavigate } from "react-router";
 import MyButton from "../buttons/button";
 import pageService from "../../services/pageService";
-import { getRandomInt } from "../../helper/randomInt";
 
 type MyItemProps = {
   name: string;
@@ -19,7 +18,6 @@ type MyItemProps = {
   follow_requests: string[];
   id: number;
 };
-
 
 const MyItem = ({
   id,
@@ -37,10 +35,14 @@ const MyItem = ({
         <CardActionArea onDoubleClick={() => navigate(`page/${id}`)}>
           <CardMedia
             component="img"
-            image={`images/jojo${getRandomInt(8)}.jpeg`}
+            image={`images/jojo${(id || 8) % 8}.jpeg`}
             style={{ width: "300px" }}
           />
           <CardContent>
+            <MyButton
+              children="delete page"
+              onClick={() => pageService.delete(id)}
+            />
             <Typography gutterBottom variant="h5" component="div">
               {name}
             </Typography>

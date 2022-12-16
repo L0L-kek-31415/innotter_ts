@@ -50,8 +50,6 @@ function App() {
         <Route path="/posts" element={<PostList />} />
         <Route path="/createpost" element={<AddPost />} />
         <Route path="/recom" element={<ForYouPostList />} />
-        
-
       </Routes>
     </BrowserRouter>
   );

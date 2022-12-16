@@ -8,18 +8,12 @@ interface Props {
   post_id: number;
 }
 
-export const PostButton: React.FC<Props> = ({
-  list_liked, 
-  post_id,
-}) => {
+export const PostButton: React.FC<Props> = ({ list_liked, post_id }) => {
   // @ts-ignore
   const id = useSelector((state) => state.user.id);
-    if (id && list_liked.includes(id)) {
+  if (id && list_liked.includes(id)) {
     return (
-      <MyButton
-        onClick={() => postService.unlike(post_id)}
-        children="unlike"
-      />
+      <MyButton onClick={() => postService.unlike(post_id)} children="unlike" />
     );
   } else if (id && !list_liked.includes(id)) {
     return (

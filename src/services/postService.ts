@@ -1,33 +1,32 @@
-import axiosInstance from "../axios"
-
+import axiosInstance from "../axios";
 
 class PostService {
-    getPosts = () => {
-        return axiosInstance.get("/api/v1/post/")
-    }
-    getPostsForMe = () => {
-        return axiosInstance.get("/api/v1/post/recommendations/")
-    }
-    getMyLikes = () => {
-        return axiosInstance.get("/api/v1/post/mylikes/")
-    }
-    like = (id: number) => {
-        return axiosInstance.post(`/api/v1/post/${id}/like/`)
-    }
-    unlike = (id: number) => {
-        return axiosInstance.post(`/api/v1/post/${id}/unlike/`)
-    }
-    createItem = (a: any, b: any) => {
-        return axiosInstance.post("/api/v1/post/", {
-            page: b,
-            content: a,
-        })
-    }
-    postsByPage = (id: any) => {
-        return axiosInstance.post("/api/v1/post/pages/", {
-            id: id
-        })
-    }
+  getPosts = () => {
+    return axiosInstance.get("/api/v1/post/");
+  };
+  getPostsForMe = () => {
+    return axiosInstance.get("/api/v1/post/recommendations/");
+  };
+  getMyLikes = () => {
+    return axiosInstance.get("/api/v1/post/mylikes/");
+  };
+  like = (id: number) => {
+    return axiosInstance.post(`/api/v1/post/${id}/like/`);
+  };
+  unlike = (id: number) => {
+    return axiosInstance.post(`/api/v1/post/${id}/unlike/`);
+  };
+  createItem = (a: any, b: any) => {
+    return axiosInstance.post("/api/v1/post/", {
+      page: b,
+      content: a,
+    });
+  };
+  postsByPage = (id: any) => {
+    return axiosInstance.post("/api/v1/post/pages/", {
+      id: id,
+    });
+  };
 }
 
 export default new PostService();
