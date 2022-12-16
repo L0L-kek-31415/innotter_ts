@@ -29,8 +29,9 @@ const Nav = () => {
         {MyLink("/posts", "Posts")}
         {MyLink("/recom", "For you")}
         {MyLink("/mypages", "My Pages")}
-        {MyLink("/create", "Create Page")}
-        <Box sx={{ ml: 20 }}>
+        {MyLink("/createpage", "Create Page")}
+        {MyLink("/createpost", "Create Post")}
+        <Box>
           <Button variant="contained">{MyLink("/logout", "LogOut")}</Button>
         </Box>
       </Breadcrumbs>

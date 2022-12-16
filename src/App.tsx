@@ -14,6 +14,8 @@ import MyPageList from "./components/page/myPagesList";
 import Search from "./components/page/search";
 import PostList from "./components/post/postList";
 import AddPost from "./components/post/addPost";
+import OnePage from "./components/page/onePage";
+import ForYouPostList from "./components/post/forYouPosts";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +39,8 @@ function App() {
       <Header />
       <Routes>
         <Route path="/register" element={<SingUp />} />
+        <Route path="/page/:id" element={<OnePage />} />
+        <Route path="/mypages/page/:id" element={<OnePage />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/" element={<PageList />} />
         <Route path="/createpage" element={<AddPage />} />
@@ -45,6 +49,8 @@ function App() {
         <Route path="/search" element={<Search />} />
         <Route path="/posts" element={<PostList />} />
         <Route path="/createpost" element={<AddPost />} />
+        <Route path="/recom" element={<ForYouPostList />} />
+        
 
       </Routes>
     </BrowserRouter>

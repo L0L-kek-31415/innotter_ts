@@ -23,6 +23,11 @@ class PostService {
             content: a,
         })
     }
+    postsByPage = (id: any) => {
+        return axiosInstance.post("/api/v1/post/pages/", {
+            id: id
+        })
+    }
 }
 
 export default new PostService();

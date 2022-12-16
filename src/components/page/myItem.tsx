@@ -9,6 +9,7 @@ import {
 import { useNavigate } from "react-router";
 import MyButton from "../buttons/button";
 import pageService from "../../services/pageService";
+import { getRandomInt } from "../../helper/randomInt";
 
 type MyItemProps = {
   name: string;
@@ -19,14 +20,6 @@ type MyItemProps = {
   id: number;
 };
 
-// export type Follower = {
-//     username: string;
-//     id: number;
-// };
-
-function getRandomInt(max: number) {
-  return Math.floor(Math.random() * max);
-}
 
 const MyItem = ({
   id,
@@ -41,7 +34,7 @@ const MyItem = ({
   return (
     <Grid item>
       <Card>
-        <CardActionArea>
+        <CardActionArea onClick={() => navigate(`page/${id}`)}>
           <CardMedia
             component="img"
             image={`images/jojo${getRandomInt(8)}.jpeg`}

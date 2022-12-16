@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router";
 import { PageButtons } from "./pageButtons";
+import { getRandomInt } from "../../helper/randomInt";
 
 type ItemItemProps = {
   name: string;
@@ -19,9 +20,7 @@ type ItemItemProps = {
   owner: string;
   id: number;
 };
-function getRandomInt(max: number) {
-  return Math.floor(Math.random() * max);
-}
+
 const ItemItem = ({
   id,
   name,
@@ -35,7 +34,7 @@ const ItemItem = ({
   return (
     <Grid item>
       <Card>
-        <CardActionArea>
+        <CardActionArea onClick={() => navigate(`page/${id}`)}>
           <CardMedia
             component="img"
             image={`images/jojo${getRandomInt(8)}.jpeg`}
