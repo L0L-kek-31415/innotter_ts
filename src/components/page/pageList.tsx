@@ -3,7 +3,6 @@ import { Container, Grid } from "@mui/material";
 import pageService from "../../services/pageService";
 import SearchIcon from "@mui/icons-material/Search";
 import ItemItem from "./item";
-import Search from "./search";
 
 const PageList = () => {
   const [pages, setPages] = useState<any[]>([]);

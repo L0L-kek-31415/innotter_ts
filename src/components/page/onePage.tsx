@@ -8,7 +8,6 @@ import {
   Typography,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import { useNavigate } from "react-router";
 import { useParams } from "react-router-dom";
 import pageService from "../../services/pageService";
 import { IPage } from "../../store/reducers/pageReducer";

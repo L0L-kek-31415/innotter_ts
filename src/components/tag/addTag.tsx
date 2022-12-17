@@ -9,10 +9,8 @@ import {
 } from "@mui/material";
 import { Field, Form, Formik, FormikValues } from "formik";
 import { TextField } from "formik-mui";
-import pageService from "../../services/pageService";
 import { useNavigate } from "react-router";
 import * as yup from "yup";
-import postService from "../../services/postService";
 import tagService from "../../services/tagService";
 
 const validationSchema = yup.object().shape({
@@ -28,7 +26,7 @@ const AddTag = ({}) => {
     setError("");
     try {
       await tagService.createTag(values.name);
-      navigate("/");
+      navigate("/createpage");
     } catch (err) {
       console.log("Ooops i did it again");
     }
