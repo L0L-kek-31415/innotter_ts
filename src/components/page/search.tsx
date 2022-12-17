@@ -98,7 +98,6 @@ const Search = ({}) => {
   return (
     <Container
       sx={{
-        marginTop: 10,
         paddingTop: 1,
         paddingBottom: 10,
       }}

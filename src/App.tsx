@@ -16,6 +16,7 @@ import PostList from "./components/post/postList";
 import AddPost from "./components/post/addPost";
 import OnePage from "./components/page/onePage";
 import ForYouPostList from "./components/post/forYouPosts";
+import AddTag from "./components/tag/addTag";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,20 +38,25 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-      <Routes>
-        <Route path="/register" element={<SingUp />} />
-        <Route path="/page/:id" element={<OnePage />} />
-        <Route path="/mypages/page/:id" element={<OnePage />} />
-        <Route path="/login" element={<LogIn />} />
-        <Route path="/" element={<PageList />} />
-        <Route path="/createpage" element={<AddPage />} />
-        <Route path="/logout" element={<LogOut />} />
-        <Route path="/mypages" element={<MyPageList />} />
-        <Route path="/search" element={<Search />} />
-        <Route path="/posts" element={<PostList />} />
-        <Route path="/createpost" element={<AddPost />} />
-        <Route path="/recom" element={<ForYouPostList />} />
-      </Routes>
+      <div style={{ paddingTop: "50px" }}>
+        <Routes>
+          <Route path="/register" element={<SingUp />} />
+          <Route path="/login" element={<LogIn />} />
+          <Route path="/logout" element={<LogOut />} />
+
+          <Route path="/" element={<PageList />} />
+          <Route path="/page/:id" element={<OnePage />} />
+          <Route path="/createpage" element={<AddPage />} />
+          <Route path="/mypages" element={<MyPageList />} />
+          <Route path="/search" element={<Search />} />
+
+          <Route path="/posts" element={<PostList />} />
+          <Route path="/createpost" element={<AddPost />} />
+          <Route path="/recom" element={<ForYouPostList />} />
+
+          <Route path="/createtag" element={<AddTag />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }

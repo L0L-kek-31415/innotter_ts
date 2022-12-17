@@ -32,7 +32,7 @@ const PostItem = ({
         <CardActionArea>
           <CardMedia
             component="img"
-            image={`images/jojo${(id || 8) % 8}.jpeg`}
+            image={`/images/jojo${(id || 8) % 8}.jpeg`}
             style={{ width: "300px" }}
           />
           <CardContent>

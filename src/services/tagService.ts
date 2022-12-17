@@ -2,7 +2,6 @@ import axios from "axios";
 import axiosInstance from "../axios";
 
 class PageService {
-
   getTags = () => {
     return axiosInstance.get("/api/v1/tag/");
   };

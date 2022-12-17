@@ -27,7 +27,7 @@ const AddTag = ({}) => {
   const onSubmit = async (values: FormikValues) => {
     setError("");
     try {
-      await tagService.createTag(values.content);
+      await tagService.createTag(values.name);
       navigate("/");
     } catch (err) {
       console.log("Ooops i did it again");
@@ -37,7 +37,6 @@ const AddTag = ({}) => {
   return (
     <Container
       sx={{
-        marginTop: 10,
         paddingTop: 1,
         paddingBottom: 10,
       }}

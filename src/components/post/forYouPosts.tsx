@@ -42,15 +42,7 @@ const ForYouPostList = () => {
       </Grid>
     );
 
-  return (
-    <Container
-      style={{
-        marginTop: 10,
-      }}
-    >
-      <div>{render}</div>
-    </Container>
-  );
+  return <Container>{render}</Container>;
 };
 
 export default ForYouPostList;

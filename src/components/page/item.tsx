@@ -13,7 +13,7 @@ import { PageButtons } from "./pageButtons";
 type ItemItemProps = {
   name: string;
   tags: any[];
-  description: string; 
+  description: string;
   followers: string[];
   follow_requests: string[];
   owner: string;

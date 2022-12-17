@@ -19,18 +19,14 @@ const OnePage = () => {
   let { id } = useParams();
   const [page, setPage] = useState<IPage>();
   const [posts, setPosts] = useState<any[]>([]);
-  const [lolkek, setStat] = useState<any>();
 
   useEffect(() => {
     const fetchPage = async () => {
       try {
         const response = await pageService.getPageId(id);
         const res = await postService.postsByPage(id);
-        // const stat = await axios.post(`http://0.0.0.0:8002/statistics/${id}`)
-
         setPage(response.data);
         setPosts(res.data);
-        // setStat(stat)
       } catch (err) {
         console.log("Oh fuck, we've got another error", err);
       }
@@ -59,43 +55,43 @@ const OnePage = () => {
       </Grid>
     );
 
-  const navigate = useNavigate();
   return (
-    <Grid item>
-      <Card style={{ marginTop: "100px" }}>
-        <h1>Page</h1>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            image={`images/jojo${(page?.id || 8) % 8}.jpeg`}
-            style={{ width: "300px" }}
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              {page?.name}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {page?.description.slice(0, 20)}...
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              <b>Followers:</b> {page?.followers.length}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              <b>Follow requests:</b> {page?.follow_requests.length}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              <b>Tags:</b> {page?.tags}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              <b>Owner:</b> {page?.owner}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Card>
-      {/* <h1>{lolkek}</h1> */}
-      <h2>Posts</h2>
-      <div>{render}</div>
-    </Grid>
+    <div>
+      <h1>Page</h1>
+      <Grid item>
+        <Card>
+          <CardActionArea>
+            <CardMedia
+              component="img"
+              image={`/images/jojo${(page?.id || 8) % 8}.jpeg`}
+              style={{ width: "300px" }}
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                {page?.name}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {page?.description.slice(0, 20)}...
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                <b>Followers:</b> {page?.followers.length}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                <b>Follow requests:</b> {page?.follow_requests.length}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                <b>Tags:</b> {page?.tags}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                <b>Owner:</b> {page?.owner}
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+      </Grid>
+      <h1>Posts</h1>
+      {render}
+    </div>
   );
 };
 

@@ -56,8 +56,6 @@ const AddPage = ({}) => {
   return (
     <Container
       sx={{
-        marginTop: 10,
-        paddingTop: 1,
         paddingBottom: 10,
       }}
       component={Card}
@@ -125,7 +123,10 @@ const AddPage = ({}) => {
                 </Select>
               </Grid>
             </Grid>
-            <MyButton onClick={() => navigate("createtag")} children="Add tag"/>
+            <MyButton
+              onClick={() => navigate("/createtag")}
+              children="Add tag"
+            />
             <Grid container item xs={12} direction="row-reverse">
               <Grid item>
                 <Button
