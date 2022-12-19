@@ -33,7 +33,7 @@ const ItemItem = ({
   return (
     <Grid item>
       <Card>
-        <CardActionArea onDoubleClick={() => navigate(`page/${id}`)}>
+        <CardActionArea onDoubleClick={() => navigate(`/page/${id}`)}>
           <CardMedia
             component="img"
             image={`images/jojo${(id || 8) % 8}.jpeg`}

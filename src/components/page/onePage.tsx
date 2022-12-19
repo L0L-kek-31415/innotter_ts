@@ -74,9 +74,11 @@ const OnePage = () => {
               <Typography gutterBottom variant="h5" component="div">
                 {page?.name}
               </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {page?.description.slice(0, 20)}...
-              </Typography>
+              <Tooltip title={page?.description}>
+                <Typography variant="body2" color="text.secondary">
+                  {page?.description.slice(0, 20)}...
+                </Typography>
+              </Tooltip>
               <Typography variant="body2" color="text.secondary">
                 <b>Followers:</b> {page?.followers.length}
               </Typography>

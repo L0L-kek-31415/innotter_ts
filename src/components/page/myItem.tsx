@@ -4,6 +4,7 @@ import {
   CardContent,
   CardMedia,
   Grid,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import { useNavigate } from "react-router";
@@ -46,9 +47,11 @@ const MyItem = ({
             <Typography gutterBottom variant="h5" component="div">
               {name}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {description.slice(0, 20)}...
-            </Typography>
+            <Tooltip title={description}>
+              <Typography variant="body2" color="text.secondary">
+                {description.slice(0, 20)}...
+              </Typography>
+            </Tooltip>
             {followers.length ? (
               <Typography variant="body2" color="text.secondary">
                 <b>Followers:</b>

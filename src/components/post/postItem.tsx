@@ -5,6 +5,7 @@ import {
   CardContent,
   CardMedia,
   Grid,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import { PostButton } from "./postButton";
@@ -39,9 +40,11 @@ const PostItem = ({
             <Typography gutterBottom variant="h5" component="div">
               {page}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {content.slice(0, 20)}...
-            </Typography>
+            <Tooltip title={content}>
+              <Typography variant="body2" color="text.secondary">
+                {content.slice(0, 20)}...
+              </Typography>
+            </Tooltip>
             <Typography variant="body2" color="text.secondary">
               <b>Likes:</b> {like.length}
             </Typography>
