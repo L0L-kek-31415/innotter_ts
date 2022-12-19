@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import {
+  Avatar,
   Card,
   CardActionArea,
   CardContent,
   CardMedia,
   Grid,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
@@ -60,6 +62,9 @@ const OnePage = () => {
       <Grid item>
         <Card>
           <CardActionArea>
+          <Tooltip title={page?.owner}>
+            <Avatar alt="Avatar" src={`/images/avatar/jojo${(page?.id || 8) % 8}.jpeg`} style={{ width: "300px", height: "300px", float: "right"}} />
+          </Tooltip>  
             <CardMedia
               component="img"
               image={`/images/jojo${(page?.id || 8) % 8}.jpeg`}

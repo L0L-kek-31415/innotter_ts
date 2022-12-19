@@ -40,7 +40,8 @@ axiosInstance.interceptors.response.use(
         return axiosInstance
           .post("/token/refresh/", { refresh: RefreshToken })
           .then((response) => {
-            localStorage.setItem("access_token", response.data.access);
+            try{
+              localStorage.setItem("access_token", response.data.access);
             localStorage.setItem("refresh_token", response.data.refresh);
 
             axiosInstance.defaults.headers["Authorization"] =
@@ -48,8 +49,14 @@ axiosInstance.interceptors.response.use(
             originalRequest.headers["Authorization"] =
               "Bearer " + response.data.access;
             return axiosInstance(originalRequest);
+            }
+            catch(err){
+              window.location.href = "/login/";
+              return Promise.reject(err);
+            }
           })
           .catch((err) => {
+            localStorage.removeItem("refresh_token")
             console.log(err);
           });
       }
