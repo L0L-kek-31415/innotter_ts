@@ -41,7 +41,7 @@ axiosInstance.interceptors.response.use(
           .post("/token/refresh/", { refresh: RefreshToken })
           .then((response) => {
             try{
-              localStorage.setItem("access_token", response.data.access);
+            localStorage.setItem("access_token", response.data.access);
             localStorage.setItem("refresh_token", response.data.refresh);
 
             axiosInstance.defaults.headers["Authorization"] =
@@ -51,6 +51,7 @@ axiosInstance.interceptors.response.use(
             return axiosInstance(originalRequest);
             }
             catch(err){
+              localStorage.removeItem("refresh_token")
               window.location.href = "/login/";
               return Promise.reject(err);
             }

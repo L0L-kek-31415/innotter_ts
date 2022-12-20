@@ -46,9 +46,8 @@ const AddPage = ({}) => {
     fetchCategories();  
   }
   useEffect(() =>{
-    get_tags()
-  }
-  )
+    get_tags();
+  }, [])
 
   const onSubmit = async (values: FormikValues) => {
     setError("");
@@ -137,13 +136,12 @@ const AddPage = ({}) => {
                 />
               </Grid>
               <Grid item xs={12}>
-                <Stack>
+                <Stack> 
                   <Autocomplete 
                     id='tags'
                     multiple
                     options={tags}
                     getOptionLabel={(options: any) => `${options.name}`}
-                    sx={{width: "300px"}}
                     noOptionsText={
                       <MyButton children="add" onClick={() => ebanat()}/>
                     }
