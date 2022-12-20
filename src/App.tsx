@@ -17,6 +17,7 @@ import AddPost from "./components/post/addPost";
 import OnePage from "./components/page/onePage";
 import ForYouPostList from "./components/post/forYouPosts";
 import AddTag from "./components/tag/addTag";
+import StatPage from "./components/page/stat";
 
 function App() {
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ function App() {
 
           <Route path="/" element={<PageList />} />
           <Route path="/page/:id" element={<OnePage />} />
+          <Route path="/stat/:id" element={<StatPage />} />
           <Route path="/createpage" element={<AddPage />} />
           <Route path="/mypages" element={<MyPageList />} />
           <Route path="/search" element={<Search />} />

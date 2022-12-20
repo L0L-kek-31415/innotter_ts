@@ -39,6 +39,7 @@ const MyPageList = () => {
             description,
             owner,
             tags,
+            uuid,
             followers,
             follow_requests,
           }) => (
@@ -47,6 +48,7 @@ const MyPageList = () => {
               name={name}
               description={description}
               tags={tags}
+              uuid={uuid}
               followers={followers}
               follow_requests={follow_requests}
             />
