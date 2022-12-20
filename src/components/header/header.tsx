@@ -1,13 +1,11 @@
-import { AppBar, Container, Toolbar } from "@mui/material";
+import { AppBar, Container } from "@mui/material";
 import Nav from "./nav";
 
 const Header = () => {
   return (
     <AppBar position="fixed">
       <Container>
-        <Toolbar>
-          <Nav />
-        </Toolbar>
+        <Nav />
       </Container>
     </AppBar>
   );

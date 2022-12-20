@@ -14,84 +14,36 @@ import { TextField } from "formik-mui";
 import pageService from "../../services/pageService";
 import { useNavigate } from "react-router";
 import * as yup from "yup";
-import { useDispatch } from "react-redux";
-import SearchIcon from "@mui/icons-material/Search";
-import ItemItem from "./item";
-import tagService from "../../services/tagService";
+import postService from "../../services/postService";
 
 const validationSchema = yup.object().shape({
-  name: yup.string(),
-  uuid: yup.number(),
+  content: yup.string().required(),
 });
 
-const Search = ({}) => {
+const AddPost = ({}) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch<any>();
+
   const [error, setError] = useState("");
   const [categories, setCategories] = useState<any>([]);
-  const [tags, setTag] = useState<any>([]);
-  const [pages, setPages] = useState<any[]>([]);
+  const [tags, setPages] = useState<any>([]);
 
   useEffect(() => {
-    const fetchCategories = async () => {
-      const response = await tagService.getTags();
-      setTag(response.data);
+    const fetchMyPages = async () => {
+      const response = await pageService.getMyPages();
+      setPages(response.data);
     };
-    fetchCategories();
+    fetchMyPages();
   }, []);
 
   const onSubmit = async (values: FormikValues) => {
     setError("");
     try {
-      let params: { [key: string]: string } = {};
-      if (values.uuid) {
-        params["uuid"] = values.uuid;
-      }
-      if (values.name) {
-        params["name"] = values.name;
-      }
-      if (categories) {
-        params["tags"] = categories;
-      }
-      pageService.search(params).then((res) => {
-        setPages(res.data);
-      });
+      await postService.createItem(values.content, categories);
+      navigate("/");
     } catch (err) {
       console.log("Ooops i did it again");
     }
   };
-
-  const render =
-    pages.length === 0 ? (
-      <div>
-        <SearchIcon sx={{ fontSize: 128 }} />
-        <p>Ooops... Looks like there is no pages</p>
-      </div>
-    ) : (
-      <Grid container spacing={6} marginTop={4} minWidth={10}>
-        {pages.map(
-          ({
-            id,
-            name,
-            description,
-            owner,
-            tags,
-            followers,
-            follow_requests,
-          }) => (
-            <ItemItem
-              id={id}
-              name={name}
-              description={description}
-              tags={tags}
-              owner={owner}
-              followers={followers}
-              follow_requests={follow_requests}
-            />
-          )
-        )}
-      </Grid>
-    );
 
   return (
     <Container
@@ -103,8 +55,7 @@ const Search = ({}) => {
     >
       <Formik
         initialValues={{
-          name: "",
-          uuid: "",
+          content: "",
         }}
         onSubmit={onSubmit}
         validateOnBlur={false}
@@ -117,22 +68,13 @@ const Search = ({}) => {
               <Grid item xs={12}>
                 <Field
                   fullWidth
-                  component={TextField}
-                  name="name"
-                  label="Name"
-                  helperText={errors.name}
-                  error={errors.name}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <Field
-                  fullWidth
                   color="primary"
                   component={TextField}
-                  name="uuid"
-                  label="uuid"
-                  helperText={errors.name}
-                  error={errors.name}
+                  name="content"
+                  multiline
+                  label="content"
+                  helperText={errors.content}
+                  error={errors.content}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -159,17 +101,16 @@ const Search = ({}) => {
                   type="submit"
                   variant="contained"
                 >
-                  Search
+                  Add Post
                 </Button>
               </Grid>
             </Grid>
           </Form>
         )}
       </Formik>
-      {render}
       <Typography color="red">{error}</Typography>
     </Container>
   );
 };
 
-export default Search;
+export default AddPost;

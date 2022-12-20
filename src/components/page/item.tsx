@@ -1,10 +1,10 @@
-import React from "react";
 import {
   Card,
   CardActionArea,
   CardContent,
   CardMedia,
   Grid,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import { useNavigate } from "react-router";
@@ -19,9 +19,7 @@ type ItemItemProps = {
   owner: string;
   id: number;
 };
-function getRandomInt(max: number) {
-  return Math.floor(Math.random() * max);
-}
+
 const ItemItem = ({
   id,
   name,
@@ -35,19 +33,21 @@ const ItemItem = ({
   return (
     <Grid item>
       <Card>
-        <CardActionArea>
+        <CardActionArea onDoubleClick={() => navigate(`/page/${id}`)}>
           <CardMedia
             component="img"
-            image={`images/jojo${getRandomInt(8)}.jpeg`}
+            image={`images/jojo${(id || 8) % 8}.jpeg`}
             style={{ width: "300px" }}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
               {name}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {description.slice(0, 20)}...
-            </Typography>
+            <Tooltip title={description}>
+              <Typography variant="body2" color="text.secondary">
+                {description.slice(0, 20)}...
+              </Typography>
+            </Tooltip>
             <Typography variant="body2" color="text.secondary">
               <b>Followers:</b> {followers.length}
             </Typography>
@@ -55,7 +55,7 @@ const ItemItem = ({
               <b>Follow requests:</b> {follow_requests.length}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              <b>Tags:</b> {tags}
+              <b>Tags:</b> {tags.join(' ')}
             </Typography>
             <Typography variant="body2" color="text.secondary">
               <b>Owner:</b> {owner}

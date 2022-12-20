@@ -3,8 +3,15 @@ import Link from "@mui/material/Link";
 import { NavLink } from "react-router-dom";
 import { Button, Box } from "@mui/material";
 import { useSelector } from "react-redux";
+import React from "react";
 
-const MyLink = (to: string, title: string) => {
+
+interface Props {
+  to: string,
+  title: string,
+}
+
+const MyLink: React.FC<Props> = ({to, title}) => {
   return (
     <Link
       component={NavLink}
@@ -25,27 +32,24 @@ const Nav = () => {
   if (ownerId)
     return (
       <Breadcrumbs separator="" aria-label="breadcrumb">
-        {MyLink("/", "Main")}
-        {MyLink("/recom", "For you")}
-        {MyLink("/mypages", "My Pages")}
-        {MyLink("/create", "Create Page")}
-        <Box sx={{ ml: 40 }}>
-          <Button variant="contained">{MyLink("/logout", "LogOut")}</Button>
+        <MyLink to='/' title="Pages"/>
+        <MyLink to='/posts' title="Posts"/>
+        <MyLink to='/recom' title="For you"/>
+        <MyLink to='/mypages' title="My Pages"/>
+        <MyLink to='/search' title="Search"/>
+
+        <Box>
+          <Button variant="contained">
+          <MyLink to='/logout' title="LogOut"/>
+          </Button>
         </Box>
       </Breadcrumbs>
     );
   else {
     return (
       <Breadcrumbs separator="" aria-label="breadcrumb">
-        <Link
-          component={NavLink}
-          to="/"
-          underline="hover"
-          color="inherit"
-          variant="h4"
-        >
-          Main
-        </Link>
+        <MyLink to='/' title="Pages"/>
+        <MyLink to='/posts' title="Posts"/>
         <Box sx={{ ml: 40 }}>
           <Button variant="contained">
             <Link

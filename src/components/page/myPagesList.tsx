@@ -4,9 +4,12 @@ import pageService from "../../services/pageService";
 import SearchIcon from "@mui/icons-material/Search";
 
 import MyItem from "./myItem";
+import MyButton, { MyOutButton } from "../buttons/button";
+import { useNavigate } from "react-router-dom";
 
 const MyPageList = () => {
   const [pages, setPages] = useState<any[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPages = async () => {
@@ -25,9 +28,10 @@ const MyPageList = () => {
       <div>
         <SearchIcon sx={{ fontSize: 128 }} />
         <p>Ooops... Looks like there is no pages in category</p>
+        <MyButton onClick={() => navigate("/createpage")} children="Add Page" />
       </div>
     ) : (
-      <Grid container spacing={6} marginTop={4} minWidth={10}>
+      <Grid container spacing={12} marginTop={1} minWidth={10}>
         {pages.map(
           ({
             id,
@@ -52,11 +56,18 @@ const MyPageList = () => {
     );
 
   return (
-    <Container
-      style={{
-        marginTop: 20,
-      }}
-    >
+    <Container>
+      <MyOutButton
+        onClick={() => navigate("/createpage")}
+        children="Add Page"
+        variant="large"
+      />
+      <span> </span>
+      <MyOutButton
+        onClick={() => navigate("/createpost")}
+        children="Add Post"
+        variant="large"
+      />
       {render}
     </Container>
   );
