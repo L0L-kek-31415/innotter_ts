@@ -37,7 +37,6 @@ const Nav = () => {
         <MyLink to='/recom' title="For you"/>
         <MyLink to='/mypages' title="My Pages"/>
         <MyLink to='/search' title="Search"/>
-
         <Box>
           <Button variant="contained">
           <MyLink to='/logout' title="LogOut"/>
