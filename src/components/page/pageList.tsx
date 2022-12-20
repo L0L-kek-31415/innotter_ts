@@ -3,7 +3,6 @@ import { Container, Grid } from "@mui/material";
 import pageService from "../../services/pageService";
 import SearchIcon from "@mui/icons-material/Search";
 import ItemItem from "./item";
-import Search from "./search";
 
 const PageList = () => {
   const [pages, setPages] = useState<any[]>([]);
@@ -12,12 +11,7 @@ const PageList = () => {
     const fetchPages = async () => {
       try {
         let response;
-        // if (lol == 'lol'){
         response = await pageService.getPages();
-        // }
-        // else{
-        //     response = lol
-        // }
         setPages(response.data);
       } catch (err) {
         console.log("Oh fuck, we've got another error");
@@ -58,15 +52,7 @@ const PageList = () => {
       </Grid>
     );
 
-  return (
-    <Container
-      style={{
-        marginTop: 10,
-      }}
-    >
-      <div>{render}</div>
-    </Container>
-  );
+  return <Container>{render}</Container>;
 };
 
 export default PageList;

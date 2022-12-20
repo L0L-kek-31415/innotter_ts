@@ -4,6 +4,7 @@ import {
   CardContent,
   CardMedia,
   Grid,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import { useNavigate } from "react-router";
@@ -19,15 +20,6 @@ type MyItemProps = {
   id: number;
 };
 
-// export type Follower = {
-//     username: string;
-//     id: number;
-// };
-
-function getRandomInt(max: number) {
-  return Math.floor(Math.random() * max);
-}
-
 const MyItem = ({
   id,
   name,
@@ -41,19 +33,25 @@ const MyItem = ({
   return (
     <Grid item>
       <Card>
-        <CardActionArea>
+        <CardActionArea onDoubleClick={() => navigate(`/page/${id}`)}>
           <CardMedia
             component="img"
-            image={`images/jojo${getRandomInt(8)}.jpeg`}
+            image={`images/jojo${(id || 8) % 8}.jpeg`}
             style={{ width: "300px" }}
           />
           <CardContent>
+            <MyButton
+              children="delete page"
+              onClick={() => pageService.delete(id)}
+            />
             <Typography gutterBottom variant="h5" component="div">
               {name}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-              {description.slice(0, 20)}...
-            </Typography>
+            <Tooltip title={description}>
+              <Typography variant="body2" color="text.secondary">
+                {description.slice(0, 20)}...
+              </Typography>
+            </Tooltip>
             {followers.length ? (
               <Typography variant="body2" color="text.secondary">
                 <b>Followers:</b>
