@@ -9,4 +9,3 @@ RUN npm run build
 FROM nginx:1.17-alpine
 COPY --from=build-stage /app/front/build/ /usr/share/nginx/html
 COPY ./nginx-setup.conf /etc/nginx/conf.d/default.conf
-#COPY conf.d/nginx-setup.conf /etc/nginx/conf.d
