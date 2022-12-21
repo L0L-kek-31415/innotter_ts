@@ -1,12 +1,19 @@
 version: "3.2"
 services:
+#  nginx:
+#    build:
+#      context: .
+#    ports:
+#      - 8080:80
+#    networks:
+#      - common_network
   frontend:
-    restart: always
-    command: npm start
-    container_name: front
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
     ports:
-      - "3000:3000"
+      - 9999:80
     stdin_open: true
+    networks:
+      - common_network
+networks:
+  common_network:
+    external: true

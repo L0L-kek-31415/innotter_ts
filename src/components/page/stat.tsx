@@ -1,20 +1,13 @@
 import React, { useEffect, useState } from "react";
 import {
-  Avatar,
   Card,
   CardActionArea,
   CardContent,
-  CardMedia,
   Grid,
-  Tooltip,
   Typography,
 } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
 import { useParams } from "react-router-dom";
 import pageService from "../../services/pageService";
-import { IPage } from "../../store/reducers/pageReducer";
-import postService from "../../services/postService";
-import PostItem from "../post/postItem";
 
 interface IStat{
   page_id: any;
