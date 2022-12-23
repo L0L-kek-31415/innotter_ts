@@ -1,0 +1,12 @@
+version: "3.2"
+services:
+  frontend:
+    build: .
+    ports:
+      - 9999:80
+    stdin_open: true
+    networks:
+      - common_network
+networks:
+  common_network:
+    external: true

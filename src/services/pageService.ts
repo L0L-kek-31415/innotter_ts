@@ -1,3 +1,4 @@
+import axios from "axios";
 import axiosInstance from "../axios";
 
 class PageService {
@@ -45,6 +46,10 @@ class PageService {
   delete = (id: any) => {
     return axiosInstance.delete(`/api/v1/page/${id}/`);
   };
-}
+  getstatistic = (id: any) => {
+    return axios.post(`http://0.0.0.0:8002/statistics/${id}`)
+  }
+
+} 
 
 export default new PageService();

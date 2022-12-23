@@ -17,6 +17,7 @@ type MyItemProps = {
   description: string;
   followers: string[];
   follow_requests: string[];
+  uuid: number;
   id: number;
 };
 
@@ -26,6 +27,7 @@ const MyItem = ({
   description,
   tags,
   followers,
+  uuid,
   follow_requests,
 }: MyItemProps) => {
   const navigate = useNavigate();
@@ -40,6 +42,8 @@ const MyItem = ({
             style={{ width: "300px" }}
           />
           <CardContent>
+            <div>eblan</div>
+            <MyButton children="statistics" onClick={() => {navigate(`/stat/${uuid}`)}} />
             <MyButton
               children="delete page"
               onClick={() => pageService.delete(id)}

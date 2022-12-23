@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "http://0.0.0.0:8000";
+const baseURL = "http://0.0.0.0:8003";
 
 const axiosInstance = axios.create({
   baseURL: baseURL,
@@ -61,7 +61,6 @@ axiosInstance.interceptors.response.use(
             console.log(err);
           });
       }
-      return Promise.reject(error);
       return Promise.reject(error);
     }
   }
